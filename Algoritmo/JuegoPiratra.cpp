@@ -3,13 +3,14 @@
 #include<stdlib.h>
 #include<time.h>
 
-int i, j, tablero, turno=1, tesoro[2], movimientos, gano=0, perdio=0, mov_ar=1, mov_der=1, mov_izq=1, mov_ab=1, movimiento[3], start[2], repe=0, respuesta;
+int i, j, tablero, turno, tesoro[2], movi, gano=0, perdio=0, mov_ar=1, mov_der=1, mov_izq=1, mov_ab=1, movimiento[3], start[2], repe=0, respuesta;
 char input[1], izquierda[]="a", derecha[]="d", abajo[]="s", arriba[]="w", resp[]="si", pregunta[2];
 main()
 {	
 	srand(time(NULL));
 do{
-	turno =0;
+	movi=0;
+	turno=0;
 	system("CLS"); 
 	do
 	{
@@ -18,10 +19,9 @@ do{
 	}while(tablero<5||tablero>20);
 
 	
-	printf("Ingrese la cantidad de movimientos que dessea tener para encontrar el tesoro: ");
-	scanf("%d", &movimientos);
+	printf("Ingrese la cantidad de movimientos que desea tener para encontrar el tesoro: ");
+	scanf("%d", &movi);
 	
-
 	
 	do
 	{
@@ -38,7 +38,11 @@ do{
 	movimiento[2] = start[2];	
 	do
 	{
-	
+	system("CLS"); 
+	printf("%d ", turno);
+	printf("%d ", movi);
+	movi=movi-turno;
+	printf("Movimientos restantes: %d\n\n", movi);
 	for(i=1;i<=tablero;i++)
 	{
 		for(j=1;j<=tablero;j++)
@@ -63,9 +67,6 @@ do{
 		printf("\n");
 	}
 	
-	printf("%d", tesoro[1]);
-	printf("%d\n", tesoro[2]);
-	
 	if(movimiento[2] == 1 || movimiento[2] == tablero || movimiento[1] == 1 || movimiento[1] == tablero)
 	{
 		perdio = 1;
@@ -76,7 +77,6 @@ do{
 	}
 	else
 	{	
-		turno = turno + 1;
 		if(movimiento[2] == 2 && movimiento[1] == tablero - 1 && repe!=1)
 		{
 			movimiento[2] = tablero - 1;
@@ -89,7 +89,7 @@ do{
 			movimiento[2] = 2;
 			repe = 1;	
 		}
-	
+		turno = turno + 1;	
 		printf("Ingrese la direccion en la que le gustaria moverse: ");
 		scanf("%s", input);
 		
@@ -117,13 +117,10 @@ do{
 			movimiento[2] = movimiento[2] + 1;
 		}		
 		repe=0;
-		
-
-						
 	}
 
-	}while(movimientos != turno && gano != 1 && perdio!= 1);
-	if(turno == movimientos)
+	}while(movi != turno && gano != 1 && perdio!= 1);
+	if(turno == movi)
 	{
 		printf("-\n-\n-\n-\n-\n-\n-\n-\n");
 		printf("Se ha quedado sin movimientos :(\n");
@@ -149,7 +146,6 @@ do{
 	}
 }while(respuesta == 0);
 }
-
 
 
 
