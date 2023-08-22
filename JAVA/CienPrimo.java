@@ -1,5 +1,3 @@
-package Primer;
-
 import java.util.Scanner;
 
 
