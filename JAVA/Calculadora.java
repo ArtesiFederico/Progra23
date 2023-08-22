@@ -1,6 +1,8 @@
+import java.util.Scanner;
+
 public class Calculadora {
 
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		Scanner scanner = new Scanner(System.in);
 		int operacion; 
 		int numero1, numero2;
